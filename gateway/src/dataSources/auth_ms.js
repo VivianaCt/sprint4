@@ -11,7 +11,12 @@ class AuthAPI extends RESTDataSource{
     }
 
     allUser(userId){
-        return this.get(`/detail_all_user/${userId}/`);
+        //return this.get(`/detail_all_user/${userId}/`);
+         return this.get ('/usuario/', {}, {
+             headers:{
+                 'Authorization': this.context.token
+             }
+         });
     }
 
     getUser(userId){
