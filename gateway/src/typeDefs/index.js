@@ -1,54 +1,9 @@
-const (gql)= require ('apollo-server');
-const lodash = require ('lodash');
+const authTypeDefs = require('./auth_type_defs');
+const productTypeDefs = require('./product_type_defs');
+const trolleyTypeDefs = require('./trolley_type_defs');
+const facturaTypeDefs = require('./factura_type_defs');
 
-const typeDefs= gql`
+const schemasArrays = [productTypeDefs, authTypeDefs, trolleyTypeDefs,facturaTypeDefs];
 
-    input CredentialsInput{
-        username:String!
-        password:String!
-    }
-    input CreateUserInput{
-        username:String!
-        email:String!
-        telefono: String!
-        direccion: String!
-        password: String! 
+module.exports = schemasArrays
 
-    }
-
-    type Tokens {
-        access:String!
-        refresh:String!
-    }
-
-    type UserDetail{
-        id: Int!
-        username: String!
-        email:String!
-        telefono: String!
-        direccion: String!
-        password: String! 
-    }
-
-    type AccessToken{
-        access:String!
-    }
-
-    type Users {
-        usuarios:[UserDetail]! 
-    }
-    
-    type Query {
-        hello:String
-        userDetailById:UserDetail!
-        getAllUser: Users!
-    }
-
-    type Mutation
-        logIn(credentials:CredentialsInput!):Tokens!
-        refreshToken(refresh:String!):AccessToken!
-        createUser(userInput:CreateUserInput!): UserDetail!
-
-`;
-
-module.exports= typeDefs

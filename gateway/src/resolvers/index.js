@@ -1,34 +1,9 @@
-const {ApolloError}=require('apollo-server-errors');
-const lodash= require('lodash');
-const temp= {
-    Query:{
-        hello: ()=>{
-            return 'world'
-        },
-        userDetailById(_, {}, {dataSources, id}) => {
-            if (id ===null) {
-                //No esta autorizado
-                throw new ApolloError ('No autorizado', 401);
-            }
-            return dataSources.authAPI.getUser(id);                
-        },
-        getAllUser: (_,{},{dataSources}) => {
-            return dataSources.authAPI.allUser();
+const productResolver = require('./product_resolver');
+const authResolver = require('./auth_resolver');
+const facturaResolver = require('./factura_resolver');
+const trolleyResolver = require('./trolley_resolver');
+const lodash = require('lodash');
 
-        }
-    },
-    Mutation: {
-        logIn:(_,{credentials}, {dataSources}) => {
-            return dataSources.authAPI.auth(credentials);
-        },
-        refreshToken: (_,{refresh}, {dataSources}) => {
-            return dataSources.authAPI.refreshToken(refresh)
-        },
-        createUser: (_,{userInput},{dataSources})=> {
-            return dataSources.authAPI.createUSer(userInput)
-        }
-    }
-}
+const resolvers = lodash.merge(productResolver, authResolver, facturaResolver, trolleyResolver);
 
-
-module.exports= temp
+module.exports = resolvers

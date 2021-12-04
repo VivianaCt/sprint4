@@ -10,7 +10,7 @@ class ComprasAPI extends RESTDataSource{
     }
 
     createFactura(factura){
-        return this.post('/factura', factura)
+        return this.post('factura/', factura)
     }
 
     getFactura(facturaId){

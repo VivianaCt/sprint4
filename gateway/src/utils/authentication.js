@@ -5,10 +5,9 @@ const fetch = require('node-fetch');
 const autenticacion = async (params) =>{
     const {req} = params;
     const token = req.headers.authorization || '';
-    if(token == ''){
+    if(token === ''){
         //NO ME MANDARON TOKEN
         return {
-            token : null
         }
     }else{
         //MANDARON UN TOKEN

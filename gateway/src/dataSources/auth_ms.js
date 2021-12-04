@@ -12,7 +12,7 @@ class AuthAPI extends RESTDataSource{
 
     allUser(userId){
         //return this.get(`/detail_all_user/${userId}/`);
-         return this.get ('/usuario/', {}, {
+         return this.get (`detail_all_user/${userId}/`, {}, {
              headers:{
                  'Authorization': this.context.token
              }
@@ -20,7 +20,7 @@ class AuthAPI extends RESTDataSource{
     }
 
     getUser(userId){
-        return this.get(`/usuario/${userId}`, {}, {
+        return this.get(`detail_user/${userId}/`, {}, {
             headers:{
                 'Authorization': `Bearer ${this.context.token}`
             }
@@ -28,23 +28,23 @@ class AuthAPI extends RESTDataSource{
     }
 
     createUser(user){
-        return this.post('/create_user/',user);
+        return this.post('create_user/',user);
     }
 
     updateUser(user){
-        return this.put('/update_user/',user);
+        return this.put(`update_user/${userId}/`,user);
     }
 
     deleteUser(userId){
-        return this.delete(`/delete_user/${userId}/`);
+        return this.delete(`delete_user/${userId}/`);
     }
 
     auth(credentials){
-        return this.post('/login/', credentials);
+        return this.post('login/', credentials);
     }
 
     refresh(refreshToken){
-        return this.post('/refresh/', {
+        return this.post('refresh/', {
             refresh: refreshToken
         })
     }
