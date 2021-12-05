@@ -21,8 +21,24 @@ const authResolver= {
         refreshToken: (_,{refresh}, {dataSources}) => {
             return dataSources.authAPI.refreshToken(refresh)
         },
-        createUser: (_,{userInput},{dataSources})=> {
-            return dataSources.authAPI.createUSer(userInput)
+        createUser: async (_,{userInput},{dataSources})=> {
+           // Orquestando peticiones
+           const {
+            username,
+            email,
+            telefono,
+            direccion,
+            password
+
+        } = userInput;
+        const user = await dataSources.authAPI.createUser({
+            username,
+            email,
+            telefono,
+            direccion,
+            password
+        });
+        return user
         }
     }
 }

@@ -46,7 +46,7 @@ class AuthAPI extends RESTDataSource{
     refresh(refreshToken){
         return this.post('refresh/', {
             refresh: refreshToken
-        })
+        });
     }
 }
 

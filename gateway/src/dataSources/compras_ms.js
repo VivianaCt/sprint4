@@ -10,24 +10,29 @@ class ComprasAPI extends RESTDataSource{
     }
 
     createFactura(factura){
-        return this.post('factura/', factura)
+        return this.post('factura/', factura);
     }
 
     getFactura(facturaId){
-        return this.get(`/factura/${facturaId}`)
+        return this.get(`/factura/${facturaId}`);
     }
 
     allFactura(facturaId){
-        return this.get(`/facturas`)
+        return this.get(`/facturas`);
     }
 
-    /*updateFactura(factura){
-        return this.post()
-    }*/
+    updateFactura(factura){
+        return this.put();
+    }
 
     deleteFactura(facturaId){
-        return this.delete(`/delete_factura/${facturaId}`)
+        return this.delete(`/delete_factura/${facturaId}`);
     }
+
+    facturaByUsername(username){
+        return this.get (`/factura/${username}`);
+    }
+    
 }
 
 module.exports=ComprasAPI
