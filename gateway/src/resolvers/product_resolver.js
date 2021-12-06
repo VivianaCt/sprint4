@@ -9,6 +9,10 @@ const productResolver = {
                     return[];
                 }
 
+        },
+        getAllProducts: (_,{},{dataSources}) => {
+            return dataSources.stockAPI.getAllProducts;
+
         }
     },
     mutation:{
@@ -16,7 +20,7 @@ const productResolver = {
             if (args.stock.originAccount === context.username) {
                 return context.dataSource.stockAPI.createProducto(args.stock);  
             } else{
-                throw new ApolloError('No esta autorizado para crear una factura con esta cuenta',401);
+                throw new ApolloError('No esta autorizado para crear un producto con esta cuenta',401);
             }
         }
     }

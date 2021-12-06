@@ -1,10 +1,10 @@
 const {RESTDataSource} = require('apollo-datasource-rest');
-const {stock_ms_url} = require('../server');
+const {auth_ms_url} = require('../server');
 
 class StockAPI extends RESTDataSource{
     constructor(){
         super();
-        this.baseURL=stock_ms_url
+        this.baseURL=auth_ms_url
     }
 
     createProducto(producto){

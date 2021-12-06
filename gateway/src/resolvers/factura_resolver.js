@@ -4,7 +4,7 @@ const facturaResolver = {
     Query:{
      getFactura: (_,args, context) =>{
          if (context.username){
-             return context.dataSources.comprasAPI.facturaByUSername(context.username);
+             return context.dataSources.comprasAPI.facturaByUsername(context.username);
          } else {
              return [];
          }

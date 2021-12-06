@@ -14,23 +14,47 @@ class ComprasAPI extends RESTDataSource{
     }
 
     getFactura(facturaId){
-        return this.get(`/factura/${facturaId}`);
+        return this.get(`factura/${facturaId}`);
     }
 
     allFactura(facturaId){
-        return this.get(`/facturas`);
+        return this.get(`facturas`);
     }
 
-    updateFactura(factura){
-        return this.put();
+    updateFactura(facturaId, factura){
+        return this.put(`update_Factura/${facturaId}/`, factura);
     }
 
     deleteFactura(facturaId){
-        return this.delete(`/delete_factura/${facturaId}`);
+        return this.delete(`delete_factura/${facturaId}`);
     }
 
     facturaByUsername(username){
-        return this.get (`/factura/${username}`);
+        return this.get (`factura/${username}`);
+    }
+    //PETICIONES DEL CARRITO DE COMPRAS
+    createTrolley(trolley){
+        return this.post('create_trolley/', trolley);
+    }
+
+    getTrolley(trolleyId, trolley){
+        return this.get(`trolley/${trolleyId}`, trolley);
+    }
+
+    allTrolleys(){
+        return this.get(`trolleys/`);
+    }
+
+    updateTrolley(trolleyId){
+        return this.put(`update_Trolley/${trolleyId}/`);
+    }
+
+    deleteTrolley(TrolleyId){
+        return this.delete(`delete_trolley/${username}/`);
+    }
+
+    TrolleyByUsername(username){
+        return this.get (`trolley/${username}`);
     }
     
 }
