@@ -5,5 +5,5 @@ const facturaTypeDefs = require('./factura_type_defs');
 
 const schemasArrays = [productTypeDefs, authTypeDefs, trolleyTypeDefs,facturaTypeDefs];
 
-module.exports = schemasArrays
+module.exports = schemasArrays;
 

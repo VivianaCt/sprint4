@@ -16,9 +16,21 @@ const productTypeDefs =  gql `
         stock: Int!
     }
 
+    type Producto {
+        id: Int!
+        nombre: String!
+        descripcion: String!
+        precio: Int!
+        stock: Int!
+    }
+
+    type Productos{
+        productos : [Producto]!
+    }
+
     extend type Query {
-        getproductoByUsername: Stock!
-        getProducto: [Producto]!
+        getproductoByUsername: Producto!
+        getProductos: Productos!
     }
 
     extend type Mutation {
@@ -28,4 +40,4 @@ const productTypeDefs =  gql `
 
 `
 
-module.exports = productoTypeDefs;
+module.exports = productTypeDefs;

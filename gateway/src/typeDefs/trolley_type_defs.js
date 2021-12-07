@@ -2,7 +2,9 @@ const {gql} = require('apollo-server');
 
 const trolleyTypeDefs = gql `
     input CreateTrolley {
-        id= Int!
+        products = String!
+        cant_Products = int!
+        price = int!
     }
 
     type Compras {
@@ -13,13 +15,24 @@ const trolleyTypeDefs = gql `
         stock: Int!
     }
 
+    type Trolley{
+        id_Trolley : String!
+        products : String!
+        cant_Products : int!,
+        price : int!
+    }
+
+    type Trolleys{
+        trolleys : [Trolley]!
+    }
+
     extend type Query {
-        getfacturaByUsername: Compras!
-        getFactura: [Factura]!
+        gettrolleyByUsername: Trolley!
+        gettrolleys: Trolleys!
     }
 
     extend type Mutation {
-        createFactura(factura: CreateFactura!): Factura!
+        createTrolley(trolley: CreateTrolley!): Trolley!
     }
 `
 
