@@ -11,16 +11,16 @@ class StockAPI extends RESTDataSource{
         return this.post('producto/', producto);
     }
 
-    getProducto(productId){
+    getProducto(productoId){
         return this.get(`/producto/${productoId}`);
     }
 
-    allProducto(productoId){
+    allProducto(){
         return this.get(`/producto`);
     }
 
-    updateProducto(producto){
-        return this.put();
+    updateProducto(productoId, producto){
+        return this.put(`update_Producto/${productoId}/`, producto);
     }
 
     deleteProducto(productoId){

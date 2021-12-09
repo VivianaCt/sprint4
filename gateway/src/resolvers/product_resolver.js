@@ -10,12 +10,12 @@ const productResolver = {
                 }
 
         },
-        getAllProducts: (_,{},{dataSources}) => {
-            return dataSources.stockAPI.getAllProducts;
+        getallProducto: (_,{},{dataSources}) => {
+            return dataSources.stockAPI.getallProducto;
 
         }
     },
-    mutation:{
+    Mutation:{
         createProducto: (_, args, context) =>{
             if (args.stock.originAccount === context.username) {
                 return context.dataSource.stockAPI.createProducto(args.stock);  

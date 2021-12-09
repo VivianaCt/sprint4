@@ -32,7 +32,7 @@ const facturaTypeDefs = gql `
 
     extend type Query {
         getfacturaByUsername: Compras!
-        getFactura: [Factura]!
+        getFactura (args : Int!): [Factura]!
     }
 
     extend type Mutation {

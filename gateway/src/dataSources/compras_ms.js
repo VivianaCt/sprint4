@@ -17,7 +17,7 @@ class ComprasAPI extends RESTDataSource{
         return this.get(`factura/${facturaId}`);
     }
 
-    allFactura(facturaId){
+    allFactura(){
         return this.get(`facturas`);
     }
 
@@ -49,8 +49,8 @@ class ComprasAPI extends RESTDataSource{
         return this.put(`update_Trolley/${trolleyId}/`);
     }
 
-    deleteTrolley(TrolleyId){
-        return this.delete(`delete_trolley/${username}/`);
+    deleteTrolley(trolleyId){
+        return this.delete(`delete_trolley/${trolleyId}/`);
     }
 
     TrolleyByUsername(username){

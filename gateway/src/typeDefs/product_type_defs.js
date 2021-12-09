@@ -29,7 +29,7 @@ const productTypeDefs =  gql `
     }
 
     extend type Query {
-        getAllProducts: Productos!
+        getallProducto: Productos!
         getProducto(args : Int!): Producto!
     }
 

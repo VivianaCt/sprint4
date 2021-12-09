@@ -27,8 +27,8 @@ const trolleyTypeDefs = gql `
     }
 
     extend type Query {
-        gettrolleyByUsername: Trolley!
-        gettrolleys: Trolleys!
+        getTrolleyByUsername: Trolley!
+        getTrolley (args : Int!): Trolleys!
     }
 
     extend type Mutation {
