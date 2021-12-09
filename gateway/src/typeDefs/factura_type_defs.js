@@ -6,7 +6,7 @@ const facturaTypeDefs = gql `
         cliente: String!
         producto: String!
         cant_Products: Int!
-        price : int!
+        price : Int!
     }
 
     type Compras {
@@ -23,7 +23,7 @@ const facturaTypeDefs = gql `
         cliente: String!
         producto: String!
         cant_Products: Int!
-        price : int!
+        price : Int!
     }
 
     type Facturas {

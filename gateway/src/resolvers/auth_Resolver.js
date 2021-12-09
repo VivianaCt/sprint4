@@ -15,7 +15,7 @@ const authResolver= {
         }
     },
     Mutation: {
-        logIn:(_,{credentials}, {dataSources}) => {
+        logIn:(_, {credentials}, {dataSources}) => {
             return dataSources.authAPI.auth(credentials);
         },
         refreshToken: (_,{refresh}, {dataSources}) => {

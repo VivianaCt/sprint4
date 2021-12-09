@@ -2,9 +2,9 @@ const {gql} = require('apollo-server');
 
 const trolleyTypeDefs = gql `
     input CreateTrolley {
-        products = String!
-        cant_Products = int!
-        price = int!
+        products : String!
+        cant_Products : Int!
+        price : Int!
     }
 
     type Compras {
@@ -18,8 +18,8 @@ const trolleyTypeDefs = gql `
     type Trolley{
         id_Trolley : String!
         products : String!
-        cant_Products : int!,
-        price : int!
+        cant_Products : Int!,
+        price : Int!
     }
 
     type Trolleys{

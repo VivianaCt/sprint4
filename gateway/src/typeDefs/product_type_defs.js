@@ -29,8 +29,8 @@ const productTypeDefs =  gql `
     }
 
     extend type Query {
-        getproductoByUsername: Producto!
-        getProductos: Productos!
+        getAllProducts: Productos!
+        getProducto(args : Int!): Producto!
     }
 
     extend type Mutation {

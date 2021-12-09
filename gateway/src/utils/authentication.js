@@ -9,7 +9,6 @@ const autenticacion = async (params) =>{
     if(token === ''){
         //NO ME MANDARON TOKEN
         return {
-            userIdToken = null
         }
     }else{
         //MANDARON UN TOKEN
@@ -22,7 +21,7 @@ const autenticacion = async (params) =>{
                 }
             });
             if(response.status === 200){
-                const {username, id}= (await response.json())
+                const {username,id}= (await response.json())
                 return{
                     id,
                     username,

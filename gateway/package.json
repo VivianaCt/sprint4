@@ -1,19 +1,19 @@
 {
   "name": "gateway",
   "version": "1.0.0",
-  "description": "gateway vitrineando",
+  "description": "gateway misiontic",
   "main": "src/index.js",
   "scripts": {
     "serve": "nodemon src/index.js"
   },
-  "author": "Freddy Ojeda",
+  "author": "Sneyder Gantiva",
   "license": "ISC",
   "dependencies": {
     "apollo-datasource-rest": "^3.4.0",
     "apollo-server": "^3.5.0",
-    "graphql": "^16.0.1",
+    "graphql": "^15.7.2",
     "lodash": "^4.17.21",
-    "node-fetch": "^2.6.6" 
+    "node-fetch": "^2.6.6"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
