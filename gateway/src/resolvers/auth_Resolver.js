@@ -28,7 +28,8 @@ const authResolver= {
             email,
             telefono,
             direccion,
-            password
+            password,
+            superuser
 
         } = userInput;
         const user = await dataSources.authAPI.createUser({
@@ -36,7 +37,8 @@ const authResolver= {
             email,
             telefono,
             direccion,
-            password
+            password,
+            superuser
         });
         return user
         }

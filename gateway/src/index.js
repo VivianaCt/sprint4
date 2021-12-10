@@ -5,6 +5,7 @@ const typeDefs= require ('./typeDefs');
 const resolvers= require('./resolvers');
 const AuthAPI= require('./dataSources/auth_ms');
 const ComprasAPI= require('./dataSources/compras_ms');
+const StockAPI = require('./dataSources/stock_ms');
 
 // Creando el servidor
 const server = new ApolloServer({
@@ -14,7 +15,7 @@ const server = new ApolloServer({
       return {
         authAPI: new AuthAPI(),
         comprasAPI: new ComprasAPI (),
-        stockAPI: new stockAPI()
+        stockAPI: new StockAPI()
       }
     },
     introspection: true,

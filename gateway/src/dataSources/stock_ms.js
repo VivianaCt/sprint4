@@ -12,11 +12,11 @@ class StockAPI extends RESTDataSource{
     }
 
     getProducto(productoId){
-        return this.get(`/producto/${productoId}`);
+        return this.get(`producto/${productoId}`);
     }
 
     allProducto(){
-        return this.get(`/producto`);
+        return this.get(`producto`);
     }
 
     updateProducto(productoId, producto){

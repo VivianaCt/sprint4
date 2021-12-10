@@ -2,6 +2,7 @@ const {gql} = require('apollo-server');
 
 const facturaTypeDefs = gql `
     input CreateFactura {
+        id_factura: String
         fecha: String!
         cliente: String!
         producto: String!

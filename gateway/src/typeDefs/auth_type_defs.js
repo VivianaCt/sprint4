@@ -45,7 +45,7 @@ const authTypeDefs = gql `
     type Mutation {
         logIn(credentials:CredentialsInput!):Tokens!
         refreshToken(refresh:String!):AccessToken!
-        createUser(userInput:CreateUserInput!): UserDetail!
+        createUser(userInput:CreateUserInput!): Tokens!
     }
 `;
 

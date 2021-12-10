@@ -12,11 +12,11 @@ const facturaResolver = {
     },
     Mutation:{
         createFactura: (_, args, context) =>{
-            if (args.compras.originAccount === context.username){
+            //if (args.compras.originAccount === context.username){
                 return context.dataSources.comprasAPI.createFactura(args.compras);
-            }else {
+            /*}else {
                 throw new ApolloError('No esta autorizado para crear una factura con esta cuenta',401);
-            }
+            }*/
         }
     }
 };

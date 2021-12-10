@@ -13,11 +13,11 @@ const trolleyResolver = {
     },
     Mutation:{
         createTrolley: (_, args, context) =>{
-            if (args.compras.originAccount === context.username) {
+            //if (args.compras.originAccount === context.username) {
                 return context.dataSource.comprasAPI.createTrolley(args.trolley);  
-            } else{
+            /*} else{
                 throw new ApolloError('No esta autorizado para crear una factura con esta cuenta',401);
-            }
+            }*/
         }
     }
 
