@@ -10,41 +10,40 @@ class AuthAPI extends RESTDataSource{
         this.baseURL = auth_ms_url;
     }
 
-    allUser(userId){
-        //return this.get(`/detail_all_user/${userId}/`);
-         return this.get (`detail_all_user/${userId}/`, {}, {
+    async allUser(userId){   
+         return await this.get (`detail_all_user/${userId}/`, {}, {
              headers:{
                  'Authorization': this.context.token
              }
          });
     }
 
-    getUser(userId){
-        return this.get(`detail_user/${userId}/`, {}, {
+    async getUser(userId){
+        return await this.get(`detail_user/${userId}/`, {}, {
             headers:{
                 'Authorization': `Bearer ${this.context.token}`
             }
         });
     }
 
-    createUser(user){
-        return this.post('create_user/',user);
+    async createUser(user){
+        return await this.post('create_user/',user);
     }
 
-    updateUser(user){
-        return this.put(`update_user/${userId}/`,user);
+    async updateUser(user){
+        return await this.put(`update_user/${userId}/`,user);
     }
 
-    deleteUser(userId){
-        return this.delete(`delete_user/${userId}/`);
+    async deleteUser(userId){
+        return await this.delete(`delete_user/${userId}/`);
     }
 
-    auth(credentials){
-        return this.post('login/', credentials);
+    async auth(credentials){
+        return await this.post('login/', credentials);
     }
 
-    refresh(refreshToken){
-        return this.post('refresh/', {
+    async refresh(refreshToken){
+        return await this.post('refresh/', {
             refresh: refreshToken
         });
     }

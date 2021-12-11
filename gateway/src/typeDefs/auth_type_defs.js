@@ -7,26 +7,32 @@ const authTypeDefs = gql `
         password:String!
     }
     input CreateUserInput{
-        username:String!
-        email:String!
-        telefono: String!
-        direccion: String!
-        password: String! 
-        superuser: String
+        username :String!
+        email    :String!
+        telefono :String!
+        direccion:String!
+        password :String! 
+        superuser:String
+    }
+
+    input UserUpdate{
+        id       :Int!
+        username :String!
+        password :String!
     }
 
     type Tokens {
-        access:String!
+        access :String!
         refresh:String!
     }
 
     type UserDetail{
-        id: Int!
-        username: String!
-        email:String!
-        telefono: String!
-        direccion: String!
-        password: String! 
+        id       :Int!
+        username :String!
+        email    :String!
+        telefono :String!
+        direccion:String!
+        password :String! 
     }
 
     type AccessToken{
@@ -38,14 +44,17 @@ const authTypeDefs = gql `
     }
     
     type Query {
-        userDetailById:UserDetail!
-        getAllUser: Users!
+        userDetailById :UserDetail!
+        getAllUser     : Users!
     }
 
     type Mutation {
-        logIn(credentials:CredentialsInput!):Tokens!
-        refreshToken(refresh:String!):AccessToken!
-        createUser(userInput:CreateUserInput!): Tokens!
+        createUser(userInput:CreateUserInput!) : Tokens!
+        logIn(credentials:CredentialsInput!)   :Tokens!
+        refreshToken(refresh:String!)          :AccessToken!
+        updateUser(user:UserUpdate!)           :String!
+        deleteUser(userId:Int!)                :String!
+        
     }
 `;
 

@@ -2,24 +2,24 @@ const {ApolloError}=require('apollo-server-errors');
 
 const authResolver= {
     Query:{
-        userDetailById: (_, {}, {dataSources, id}) => {
+        userDetailById: async (_, {}, {dataSources, id}) => {
             if (id ===null) {
                 //No esta autorizado
                 throw new ApolloError ('No autorizado', 401);
             }
-            return dataSources.authAPI.getUser(id);                
+            return await dataSources.authAPI.getUser(id);                
         },
-        getAllUser: (_,{},{dataSources}) => {
-            return dataSources.authAPI.allUser();
+        getAllUser: async (_,{},{dataSources}) => {
+            return await dataSources.authAPI.allUser();
 
         }
     },
     Mutation: {
-        logIn:(_, {credentials}, {dataSources}) => {
-            return dataSources.authAPI.auth(credentials);
+        logIn:async (_, {credentials}, {dataSources}) => {
+            return await dataSources.authAPI.auth(credentials);
         },
-        refreshToken: (_,{refresh}, {dataSources}) => {
-            return dataSources.authAPI.refreshToken(refresh)
+        refreshToken: async (_,{refresh}, {dataSources}) => {
+            return await dataSources.authAPI.refreshToken(refresh)
         },
         createUser: async (_,{userInput},{dataSources})=> {
            // Orquestando peticiones
@@ -41,7 +41,22 @@ const authResolver= {
             superuser
         });
         return user
+        },
+        
+        updateUser: async (_, {user}, {dataSources, userIdToken}) =>{
+            if(user.id == userIdToken)
+                return await dataSources.authAPI.updateUser(user);
+            else
+                return null;
+        },
+
+        deleteUser:async(_, {userId}, { dataSources, userIdToken }) => {
+            if(userId == userIdToken) 
+                return await dataSources.authAPI.deleteUser(userId);
+            else
+                return null;
         }
+
     }
 }
 
