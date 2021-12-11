@@ -7,33 +7,35 @@ class StockAPI extends RESTDataSource{
         this.baseURL=auth_ms_url
     }
 
-    async createProducto(producto){
-        return this.post('producto/', producto);
+    async createProduct(producto){
+        return await this.post('producto/', producto);
     }
 
-    async getProducto(productoId){
-        return this.get(`producto/${productoId}`);
+    async getProduct(productoId){
+        return await this.get(`producto/${productoId}`);
     }
 
-    async allProducto(){
-        return this.get(`producto`);
+    async allProduct(){
+        return await this.get(`producto`);
     }
 
-    async   updateProducto(productoId, producto){
-        return this.put(`update_Producto/${productoId}/`, producto);
+    async  updateProduct(productoId, producto){
+        return await this.put(`update_Producto/${productoId}/`, producto);
     }
 
-    async deleteProducto(productoId){
-        return this.delete(`/delete_producto/${productoId}`);
+    async deleteProduct(productoId){
+        return await this.delete(`/delete_producto/${productoId}`);
     }
 
-    async productoByUsername(username){
-        console.log(username);
+    async productByUsername(username){
+        /* console.log(username);
         let rta=await this.get(`/detail_product/${username}`);
         console.log(rta);
-        return rta;
+        return rta; */
+        return await this.get (`/detail_product/${username}`);
         
     }
 }
 
 module.exports=StockAPI
+ 

@@ -9,54 +9,57 @@ class ComprasAPI extends RESTDataSource{
         this.baseURL=compras_ms_url
     }
 
-    createFactura(factura){
-        return this.post('factura/', factura);
+    async createFactura(factura){
+        return await this.post('factura/', factura);
     }
 
-    getFactura(facturaId){
-        return this.get(`factura/${facturaId}`);
+    async getFactura(facturaId){
+        return await this.get(`factura/${facturaId}`);
     }
 
-    allFactura(){
-        return this.get(`facturas`);
+    async allFactura(username){
+        return await this.get(`facturas/ ${username}`);
     }
 
-    updateFactura(facturaId, factura){
-        return this.put(`update_Factura/${facturaId}/`, factura);
+    async updateFactura(factura){
+        return await this.put('update_Factura/', factura);
     }
 
-    deleteFactura(facturaId){
-        return this.delete(`delete_factura/${facturaId}`);
+    async deleteFactura(facturaId){
+        return await this.delete(`delete_factura/${facturaId}`);
     }
 
-    facturaByUsername(username){
-        return this.get (`factura/${username}`);
+    async facturaByUsername(username){
+        return await this.get (`factura/${username}`);
     }
+
+
     //PETICIONES DEL CARRITO DE COMPRAS
-    createTrolley(trolley){
-        return this.post('create_trolley/', trolley);
+
+    /* async createTrolley(trolley){
+        return await this.post('create_trolley/', trolley);
     }
 
-    getTrolley(trolleyId, trolley){
-        return this.get(`trolley/${trolleyId}`, trolley);
+    async getTrolley(trolleyId, trolley){
+        return await this.get(`trolley/${trolleyId}`, trolley);
     }
 
-    allTrolleys(){
-        return this.get(`trolleys/`);
+    async allTrolleys(){
+        return await this.get(`trolleys/`);
     }
 
-    updateTrolley(trolleyId){
-        return this.put(`update_Trolley/${trolleyId}/`);
+    async updateTrolley(trolleyId){
+        return await this.put(`update_Trolley/${trolleyId}/`);
     }
 
-    deleteTrolley(trolleyId){
-        return this.delete(`delete_trolley/${trolleyId}/`);
+    async deleteTrolley(trolleyId){
+        return await this.delete(`delete_trolley/${trolleyId}/`);
     }
 
-    TrolleyByUsername(username){
-        return this.get (`trolley/${username}`);
-    }
+    async TrolleyByUsername(username){
+        return await this.get (`trolley/${username}`);
+    } */
     
-}
+};
 
-module.exports=ComprasAPI
+module.exports= ComprasAPI

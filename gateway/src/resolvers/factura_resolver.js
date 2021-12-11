@@ -1,22 +1,50 @@
-const { ApolloError } = require('apollo-server-errors');
 
 const facturaResolver = { 
     Query:{
-     getFactura: (_,args, context) =>{
-         if (context.username){
-             return context.dataSources.comprasAPI.facturaByUsername(context.username);
-         } else {
-             return [];
-         }
-     }  
+        getFacturaByUsername: async (_, {username}, {dataSources, userIdToken}) => {
+            usernameToken = (await dataSources.authAPI.getUser(userIdToken)).username
+            if (username == usernameToken)
+                return await dataSources.ComprasAPI.facturaByUsername(username);
+            else
+                return null;
+        },
+
+        getAllFacturas: async(_,{username}, {dataSources, userIdToken}) =>{ 
+            usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
+            if (username ==usernameToken)
+                return await dataSources.ComprasAPI.allFactura(username);
+            else
+                return null;
+        }, 
+
+        getFacturaById : async (_, {facturaId}, {dataSources, userIdToken})=>{
+            usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
+            const factura= (await dataSources.ComprasAPI.getFactura(facturaId))
+            usernameFactura= factura.cliente
+            if (usernameToken == usernameFactura)
+                return await factura;
+            else 
+                return null;
+        }
+    
     },
+
+
     Mutation:{
-        createFactura: (_, args, context) =>{
-            //if (args.compras.originAccount === context.username){
-                return context.dataSources.comprasAPI.createFactura(args.compras);
-            /*}else {
-                throw new ApolloError('No esta autorizado para crear una factura con esta cuenta',401);
-            }*/
+        createFactura: async (_, {factura}, {dataSources, userIdToken}) => {
+            usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
+            if (factura.cliente ==usernameToken)
+                return await dataSources.ComprasAPI.createFactura(factura);
+            else
+                return null;
+        },
+        updateFactura: async (_, {factura}, {dataSources, userIdToken}) => {
+            usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
+            usernameFactura= (await dataSources.ComprasAPI.getFactura(factura.id_factura)).cliente
+            if (usernameToken== usernameFactura)
+                return await dataSources.ComprasAPI.updateFactura (factura);
+            else
+                return null;
         }
     }
 };

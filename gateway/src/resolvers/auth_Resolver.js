@@ -1,17 +1,18 @@
-const {ApolloError}=require('apollo-server-errors');
 
-const authResolver= {
-    Query:{
-        userDetailById: async (_, {}, {dataSources, id}) => {
-            if (id ===null) {
-                //No esta autorizado
-                throw new ApolloError ('No autorizado', 401);
-            }
-            return await dataSources.authAPI.getUser(id);                
+const authResolver = {
+    Query: {
+        userDetailById: async(_, {userId}, { dataSources, userIdToken }) => {
+            if(userId == userIdToken)
+                return await dataSources.authAPI.getUser(userId);
+            else
+                return null;
         },
-        getAllUser: async (_,{},{dataSources}) => {
-            return await dataSources.authAPI.allUser();
-
+                
+        getAllUser    : async(_, {userId}, { dataSources, userIdToken }) => {
+            if(userId == userIdToken)
+                return await dataSources.authAPI.getOtherAccounts(userId);
+            else
+                return null;
         }
     },
     Mutation: {
@@ -22,26 +23,26 @@ const authResolver= {
             return await dataSources.authAPI.refreshToken(refresh)
         },
         createUser: async (_,{userInput},{dataSources})=> {
-           // Orquestando peticiones
-           const {
-            username,
-            email,
-            telefono,
-            direccion,
-            password,
-            superuser
-
-        } = userInput;
-        const user = await dataSources.authAPI.createUser({
-            username,
-            email,
-            telefono,
-            direccion,
-            password,
-            superuser
-        });
-        return user
-        },
+            // Orquestando peticiones
+            const {
+             username,
+             email,
+             telefono,
+             direccion,
+             password,
+             superuser
+ 
+         } = userInput;
+         const user = await dataSources.authAPI.createUser({
+             username,
+             email,
+             telefono,
+             direccion,
+             password,
+             superuser
+         });
+         return user
+         },
         
         updateUser: async (_, {user}, {dataSources, userIdToken}) =>{
             if(user.id == userIdToken)
@@ -58,7 +59,7 @@ const authResolver= {
         }
 
     }
-}
+};
 
 
-module.exports= authResolver
+module.exports= authResolver;

@@ -1,56 +1,65 @@
-const { ApolloError } = require('apollo-server-errors');
-const productAPI = require('../dataSources/stock_ms');
-
-const productResolver = {
+const productResolver ={
     Query:{
-        getProducto: (_,args, {dataSources})=>{
-            /*if(context.username){
-                return context.dataSource.StockAPI.productoByUsername(context.username);
-                } else {
-                    return[];
-                }*/
-                let resultado = dataSources.stockAPI.productoByUsername(args.args);
-                
-                return resultado;
-
+        productByUsername: async (_,{username}, {dataSources, userIdToken})=>{
+            usernameToken = (await dataSources.authAPI.getUser(userIdToken)).username
+            if (username == usernameToken)
+                return await dataSources.StockAPI.productByUsername(username);
+            else
+                return null;
         },
-        getallProducto: (_,{},{dataSources}) => {
-            return dataSources.StockAPI.getallProducto;
-
+        getAllProducts: async (_,{username}, {dataSources, userIdToken})=>{
+            usernameToken = (await dataSources.authAPI.getUser(userIdToken)).username
+            if (username == usernameToken)
+                return await dataSources.StockAPI.allProduct(username);
+            else
+                return null;  
+        },
+        getProductById : async (_, {productoId}, {dataSources, userIdToken})=>{
+            usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
+            const producto=(await dataSources.StockAPI.getProduct(productoId))
+            usernameProducto= producto.nombre
+            if (usernameToken == usernameProducto)
+                return await producto;
+            else 
+                return null;
         }
     },
     Mutation:{
-        createProducto: (_, args, {dataSources}) =>{
-            console.log("args : ", args);
-            console.log(dataSources);
-            let resultado = dataSources.StockAPI.createProducto(args.producto);
-            console.log("====>",resultado);
-            //if (args.stock.originAccount === context.username) {
-            return resultado;
-            /*return productAPI.createProducto(args.producto);
-            } else{
-                throw new ApolloError('No esta autorizado para crear un producto con esta cuenta',401);
-            }*/
-                // Orquestando peticiones
-                /*const {
-                    nombre,
-                    descripcion,
-                    precio,
-                    stock 
-     
-             } = productInput;
-             const product = await dataSources.stockAPI.createProducto({
+        createProduct: async (_,{producto},{dataSources})=>{
+            const {
                 nombre,
                 descripcion,
                 precio,
-                stock 
-             });
-             return product*/
-             
+                stock
+            } = producto;
+            const crearproducto= await dataSources.StockAPI.createProduct({
+                nombre,
+                descripcion,
+                precio,
+                stock
+            });
+            return crearproducto
+        }, 
+        updateProduct: async (_,{producto},{dataSources, userIdToken})=>{
+            usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
+            usernameProducto= (await dataSources.StockAPI.getProduct(producto.id)).nombre
+            if (usernameToken== usernameProducto)
+                return await dataSources.ComprasAPI.updateProduct (producto);
+            else
+                return null;
         }
-    }
+            
+        },
+        /* deleteProduct: async (_,{productoId},{dataSources, userIdToken})=>{
+                 usernameToken       = (await dataSources.authAPI.getUser(userIdToken)).username
+                 usernameProducto = (await dataSources.StockAPI.getProduct(productoId)).nombre
+                if(usernameToken == usernameProducto) 
+                    return await dataSources.StockAPI.deleteProduct(productoId);
+                else
+                    return null;
+        }, */
+
+};
 
 
-}
-
-module.exports= productResolver;
+module.exports= productResolver

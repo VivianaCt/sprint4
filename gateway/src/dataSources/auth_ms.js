@@ -31,6 +31,7 @@ class AuthAPI extends RESTDataSource{
     }
 
     async updateUser(user){
+        let userId= user.id;
         return await this.put(`update_user/${userId}/`,user);
     }
 
@@ -43,9 +44,7 @@ class AuthAPI extends RESTDataSource{
     }
 
     async refresh(refreshToken){
-        return await this.post('refresh/', {
-            refresh: refreshToken
-        });
+        return await this.post('refresh/', refreshToken);
     }
 }
 
