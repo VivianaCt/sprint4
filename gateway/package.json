@@ -6,7 +6,7 @@
   "scripts": {
     "serve": "nodemon src/index.js"
   },
-  "author": "Sneyder Gantiva",
+  "author": "Vivi",
   "license": "ISC",
   "dependencies": {
     "apollo-datasource-rest": "^3.4.0",
