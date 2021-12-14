@@ -37,6 +37,7 @@ const facturaResolver = {
                 return await dataSources.ComprasAPI.createFactura(factura);
             else
                 return null;
+
         },
         updateFactura: async (_, {factura}, {dataSources, userIdToken}) => {
             usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
@@ -45,7 +46,8 @@ const facturaResolver = {
                 return await dataSources.ComprasAPI.updateFactura (factura);
             else
                 return null;
-        }
+        },
+        
     }
 };
 

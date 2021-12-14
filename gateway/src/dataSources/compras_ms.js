@@ -10,19 +10,21 @@ class ComprasAPI extends RESTDataSource{
     }
 
     async createFactura(factura){
-        return await this.post('factura/', factura);
+        factura = new Object (JSON.parse(JSON.stringify(factura)));
+        return await this.post('/factura/', factura);
     }
 
     async getFactura(facturaId){
         return await this.get(`factura/${facturaId}`);
     }
 
-    async allFactura(username){
-        return await this.get(`facturas/ ${username}`);
+    async allFactura(){
+        return await this.get('/facturas/');
     }
 
     async updateFactura(factura){
-        return await this.put('update_Factura/', factura);
+        factura = new Object (JSON.parse(JSON.stringify(factura)));
+        return await this.put(`/update_Factura/`, factura);
     }
 
     async deleteFactura(facturaId){
@@ -36,29 +38,30 @@ class ComprasAPI extends RESTDataSource{
 
     //PETICIONES DEL CARRITO DE COMPRAS
 
-    /* async createTrolley(trolley){
-        return await this.post('create_trolley/', trolley);
+    //PETICIONES DEL CARRITO DE COMPRAS
+    async createTrolley(trolley){
+        trolley = new Object (JSON.parse(JSON.stringify(trolley)));
+        return await this.post('/create_trolley/', trolley);
+    }
+    async getTrolley(TrolleyId){
+        return await this.get(`/trolley/${TrolleyId}`);
     }
 
-    async getTrolley(trolleyId, trolley){
-        return await this.get(`trolley/${trolleyId}`, trolley);
+    async getTrolleyByUsername(username){
+        return await this.get(`/trolley/${username}/`);
     }
 
     async allTrolleys(){
-        return await this.get(`trolleys/`);
+        return await this.get(`/trolleys/`);
     }
 
-    async updateTrolley(trolleyId){
-        return await this.put(`update_Trolley/${trolleyId}/`);
+    async updateTrolley(username){
+        return await this.put(`/update_trolley/${username}/`);
     }
 
-    async deleteTrolley(trolleyId){
-        return await this.delete(`delete_trolley/${trolleyId}/`);
+    async deleteTrolley(username){
+        return await this.delete(`delete_trolley/${username}/`);
     }
-
-    async TrolleyByUsername(username){
-        return await this.get (`trolley/${username}`);
-    } */
     
 };
 

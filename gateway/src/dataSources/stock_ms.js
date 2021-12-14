@@ -8,23 +8,25 @@ class StockAPI extends RESTDataSource{
     }
 
     async createProduct(producto){
-        return await this.post('producto/', producto);
+        producto= new Object (JSON.parse(JSON.stringify(producto)));
+        return await this.post('create_product/', producto);
     }
 
     async getProduct(productoId){
-        return await this.get(`producto/${productoId}`);
+        return await this.get(`detail_product/${productoId}`);
     }
 
     async allProduct(){
-        return await this.get(`producto`);
+        return await this.get(`detail_all_products/`);
     }
 
-    async  updateProduct(productoId, producto){
-        return await this.put(`update_Producto/${productoId}/`, producto);
+    async  updateProduct(producto){
+        producto= new Object (JSON.parse(JSON.stringify(producto)));
+        return await this.put(`update_product/${producto}/`);
     }
 
     async deleteProduct(productoId){
-        return await this.delete(`/delete_producto/${productoId}`);
+        return await this.delete(`delete_product/${productoId}`);
     }
 
     async productByUsername(username){
@@ -32,7 +34,7 @@ class StockAPI extends RESTDataSource{
         let rta=await this.get(`/detail_product/${username}`);
         console.log(rta);
         return rta; */
-        return await this.get (`/detail_product/${username}`);
+        return await this.get (`detail_product/${username}`);
         
     }
 }

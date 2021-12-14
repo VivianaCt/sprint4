@@ -10,8 +10,7 @@ const facturaTypeDefs = gql `
         price : Int!
     }
 
-    type CreateFactura {
-        id_factura: String
+    input CreateFactura {
         fecha: String!
         cliente: String!
         producto: String!
@@ -19,7 +18,7 @@ const facturaTypeDefs = gql `
         price : Int!
     }
 
-    type FacturaUpdate{
+    input FacturaUpdate{
         id_factura : String!
         fecha: String!
         cliente: String!
@@ -36,8 +35,8 @@ const facturaTypeDefs = gql `
     }
 
     extend type Mutation {
-        createFactura(factura:String!): Factura!
-        updateFactura(factura:String!): Factura!
+        createFactura(factura:CreateFactura!): Factura!
+        updateFactura(factura:FacturaUpdate!): Factura!
         
     }
 `;
@@ -45,5 +44,3 @@ const facturaTypeDefs = gql `
 module.exports = facturaTypeDefs
 
 
-//createFactura(factura:CreateFactura!): Factura!
-//updateFactura(factura:FacturaUpdate!): Factura!

@@ -16,7 +16,7 @@ const productTypeDefs =  gql `
         stock: Int!
     }
 
-    type ProductUpdate{
+    input ProductUpdate{
         id: String!
         nombre: String!
         descripcion: String!
@@ -33,7 +33,7 @@ const productTypeDefs =  gql `
 
     extend type Mutation {
         createProduct(producto: CreateProduct!): Product!
-        updateProduct(producto: String!): Product
+        updateProduct(producto: ProductUpdate!): Product
      
     }
 
@@ -43,6 +43,5 @@ const productTypeDefs =  gql `
 module.exports = productTypeDefs;
 
 
-//createProduct(producto: CreateProduct!): Product!
-//updateProduct(producto: ProductUpdate!): Product
+
 // deleteProduct(username:String!): String!

@@ -25,20 +25,12 @@ const productResolver ={
         }
     },
     Mutation:{
-        createProduct: async (_,{producto},{dataSources})=>{
-            const {
-                nombre,
-                descripcion,
-                precio,
-                stock
-            } = producto;
-            const crearproducto= await dataSources.StockAPI.createProduct({
-                nombre,
-                descripcion,
-                precio,
-                stock
-            });
-            return crearproducto
+        createProduct: async (_,{producto},{dataSources, userIdToken})=>{
+            usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
+            if(producto.nombre == usernameToken )
+                return await dataSources.StockAPI.createProduct(producto);
+            else
+                return null;
         }, 
         updateProduct: async (_,{producto},{dataSources, userIdToken})=>{
             usernameToken= (await dataSources.authAPI.getUser(userIdToken)).username
